@@ -1,0 +1,98 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f0f0f0;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ticket-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.ticket-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.ticket-item:last-child {
+  border-bottom: none;
+}
+
+.ticket-name {
+  flex: 1;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.ticket-created {
+  font-size: 0.8em;
+  color: #777;
+  margin-right: 10px;
+}
+
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  color: red;
+}
+
+.ticket-details {
+  padding: 10px 20px;
+  background: #fafafa;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.modal-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.loading-spinner {
+  display: block;
+  margin: 20px auto;
+  width: 40px;
+}
