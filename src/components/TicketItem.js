@@ -50,18 +50,21 @@ export default class TicketItem {
 
   async showDetails() {
     try {
-      const fullTicket = await this.service.getTicketById(this.ticket.id);
-      let detailsEl = this.element.querySelector('.ticket-details');
-      if (detailsEl) {
-        detailsEl.remove(); // современный метод
-        return;
-      }
-      detailsEl = document.createElement('div');
-      detailsEl.className = 'ticket-details';
-      detailsEl.textContent = fullTicket.description || 'Нет описания';
-      this.element.after(detailsEl);
+        // Ищем существующий блок деталей, идущий сразу после элемента тикета
+        const nextEl = this.element.nextElementSibling;
+        if (nextEl && nextEl.classList.contains('ticket-details')) {
+            nextEl.remove(); // скрываем детали
+            return;
+        }
+
+        // Загружаем полное описание и показываем
+        const fullTicket = await this.service.getTicketById(this.ticket.id);
+        const detailsEl = document.createElement('div');
+        detailsEl.className = 'ticket-details';
+        detailsEl.textContent = fullTicket.description || 'Нет описания';
+        this.element.after(detailsEl);
     } catch (e) {
-      console.error(e);
+        console.error(e);
     }
   }
 }
