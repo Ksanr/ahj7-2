@@ -32,7 +32,7 @@ jobs:
 
       - name: Build
         env:
-          API_URL: ${{ secrets.API_URL || 'https://your-app.up.railway.app' }}
+          API_URL: ${{ secrets.API_URL}}
         run: npm run build
 
       - name: Setup Pages

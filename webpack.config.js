@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -47,4 +48,21 @@ module.exports = {
       },
     ],
   },
+};
+
+module.exports = (env, argv) => {
+  const isProduction = argv.mode === 'production';
+  return {
+    // ... остальные настройки ...
+    plugins: [
+      // ... HtmlWebpackPlugin ...
+      new webpack.DefinePlugin({
+        'process.env.API_URL': JSON.stringify(
+          isProduction
+            ? process.env.API_URL || 'https://helpdesk-backend-production.up.railway.app'  // ваш Railway URL
+            : 'http://localhost:7070'
+        )
+      })
+    ],
+  };
 };

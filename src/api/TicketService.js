@@ -1,6 +1,6 @@
 export default class TicketService {
-  constructor(baseUrl) {
-    this.baseUrl = baseUrl;
+  constructor() {
+    this.baseUrl = process.env.API_URL;
   }
 
   async request(method, queryParams = '', body = null) {
