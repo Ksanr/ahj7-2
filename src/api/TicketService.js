@@ -6,18 +6,20 @@ export default class TicketService {
   async request(method, queryParams = '', body = null) {
     const url = `${this.baseUrl}/?method=${method}${queryParams}`;
     const options = {
-      method: body ? 'POST' : 'GET',
-      headers: body ? { 'Content-Type': 'application/json' } : {},
+        method: body ? 'POST' : 'GET',
+        headers: body ? { 'Content-Type': 'application/json' } : {},
     };
     if (body) {
-      options.body = JSON.stringify(body);
+        options.body = JSON.stringify(body);
     }
     const response = await fetch(url, options);
     if (response.status === 204) return null;
-    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error: ${response.status} ${errorText}`);
+    }
     const text = await response.text();
-    if (!text) return null;
-    return JSON.parse(text);
+    return text ? JSON.parse(text) : null;
   }
 
   async getAllTickets() {
