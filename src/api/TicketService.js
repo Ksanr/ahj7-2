@@ -7,7 +7,7 @@ export default class TicketService {
     const url = `${this.baseUrl}/?method=${method}${queryParams}`;
     const options = {
       method: body ? 'POST' : 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers: body ? { 'Content-Type': 'application/json' } : {},
     };
     if (body) {
       options.body = JSON.stringify(body);
